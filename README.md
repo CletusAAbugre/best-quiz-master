@@ -1,73 +1,35 @@
-<<<<<<< HEAD
-=======
-# Getting Started with Create React App
+Best QuizMaster Deployment
+This document outlines the steps I followed to deploy Best QuizMaster, a sports-themed quiz application, on two web servers (Web01 and Web02). Additionally, I configured a load balancer (Lb01) to ensure efficient traffic distribution between the servers.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The quiz questions in Best QuizMaster are dynamically fetched from the Open Trivia Database API: https://opentdb.com/api_config.php.
 
-## Available Scripts
+Deployment Steps
+Install Nginx on Web Servers
 
-In the project directory, you can run:
+Updated system packages and installed Nginx on both servers.
+Uploaded the application files to /var/www/html/.
+Configure Nginx on Web Servers
 
-### `npm start`
+Configured Nginx to serve the Best QuizMaster application.
+Verify Application
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Confirmed the application loads successfully:
+Web01: http://107.21.88.109
+Web02: http://54.237.140.194
+Load Balancer Configuration
+Install Nginx on Lb01
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Installed Nginx on the load balancer server.
+Configure Load Balancing
 
-### `npm test`
+Configured an upstream block in the Nginx configuration to balance traffic between Web01 and Web02.
+Test Load Balancer
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
->>>>>>> a76b352 (Initialize project using Create React App)
+Verified load balancing by accessing http://54.90.82.26 and refreshing the page to confirm traffic alternates between servers.
+Testing Steps
+Simulated a server failure by stopping Nginx on Web01 and verified that Web02 handled all requests seamlessly.
+Restarted Nginx on Web01 to restore full functionality.
+Notes
+The application dynamically fetches quiz questions from the Open Trivia Database API: https://opentdb.com/api_config.php.
+Ensure all servers have proper permissions configured for secure access.
+Protect configurations to prevent unauthorized modifications.
